@@ -12,7 +12,7 @@ URL:		http://pcmanfm.sourceforge.net/
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake
 BuildRequires:	gamin-devel
-BuildRequires:	gtk+-devel >= 2.8
+BuildRequires:	gtk+2-devel >= 2:2.8
 BuildRequires:	pkgconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
