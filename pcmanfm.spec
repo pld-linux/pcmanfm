@@ -1,5 +1,5 @@
 Summary:	File manager for GTK
-Summary(pl):	Zarz±dca plików dla GTK
+Summary(pl.UTF-8):   ZarzÄ…dca plikÃ³w dla GTK
 Name:		pcmanfm
 Version:	0.2.4
 Release:	1
@@ -21,9 +21,9 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 pcmanfm is a fast and lightweight file manager which features tabbed
 browsing and user-friendly interface.
 
-%description -l pl
-pcmanfm jest szybkim i lekkim zarz±dc± plików z przyjaznym interfejsem
-u¿ytkownika, umo¿liwiaj±cym przegl±danie katalogów w zak³adkach.
+%description -l pl.UTF-8
+pcmanfm jest szybkim i lekkim zarzÄ…dcÄ… plikÃ³w z przyjaznym interfejsem
+uÅ¼ytkownika, umoÅ¼liwiajÄ…cym przeglÄ…danie katalogÃ³w w zakÅ‚adkach.
 
 %prep
 %setup -q
