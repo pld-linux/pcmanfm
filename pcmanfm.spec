@@ -1,5 +1,5 @@
 Summary:	File manager for GTK
-Summary(pl.UTF-8):   Zarządca plików dla GTK
+Summary(pl.UTF-8):	Zarządca plików dla GTK
 Name:		pcmanfm
 Version:	0.2.4
 Release:	1
