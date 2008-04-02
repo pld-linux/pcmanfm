@@ -10,10 +10,11 @@ Source0:	http://dl.sourceforge.net/pcmanfm/%{name}-%{version}.tar.gz
 URL:		http://pcmanfm.sourceforge.net/
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake
-BuildRequires: dbus-glib-devel
+BuildRequires:	dbus-glib-devel
 BuildRequires:	fam-devel
-BuildRequires: hal-devel
+BuildRequires:	hal-devel
 BuildRequires:	gtk+2-devel >= 2:2.8
+BuildRequires:	libselinux-devel
 BuildRequires:	pkgconfig
 BuildRequires:	startup-notification-devel
 Requires:	gnome-icon-theme
