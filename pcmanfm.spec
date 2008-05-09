@@ -58,11 +58,10 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS TODO
 %attr(755,root,root) %{_bindir}/%{name}
-%{_desktopdir}/%{name}.desktop
-%{_pixmapsdir}/%{name}.png
 %dir %{_datadir}/%{name}
 %{_datadir}/%{name}/*.rules
-%{_datadir}/%{name}/icons/
-%{_datadir}/%{name}/ui/*.glade
-
+%{_datadir}/%{name}/icons
+%{_datadir}/%{name}/ui
 %{_datadir}/mime/packages/libmimetype.xml
+%{_desktopdir}/%{name}.desktop
+%{_pixmapsdir}/%{name}.png
