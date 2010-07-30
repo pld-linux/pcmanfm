@@ -5,13 +5,14 @@ Version:	0.5
 Release:	2
 License:	GPL v2
 Group:		X11/Applications
-Source0:	http://dl.sourceforge.net/pcmanfm/%{name}-%{version}.tar.gz
+Source0:	http://downloads.sourceforge.net/pcmanfm/%{name}-%{version}.tar.gz
 # Source0-md5:	fe1a836eed6a42107e7d71a01a52f7ec
 URL:		http://pcmanfm.sourceforge.net/
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake
 BuildRequires:	dbus-glib-devel >= 0.31
 BuildRequires:	fam-devel
+BuildRequires:	gettext-devel
 BuildRequires:	gtk+2-devel >= 2:2.8
 BuildRequires:	hal-devel >= 0.5.0
 BuildRequires:	intltool
