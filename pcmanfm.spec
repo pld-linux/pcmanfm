@@ -1,12 +1,12 @@
 Summary:	File manager for GTK
 Summary(pl.UTF-8):	Zarządca plików dla GTK
 Name:		pcmanfm
-Version:	0.5
-Release:	2
+Version:	0.9.7
+Release:	1
 License:	GPL v2
 Group:		X11/Applications
 Source0:	http://downloads.sourceforge.net/pcmanfm/%{name}-%{version}.tar.gz
-# Source0-md5:	fe1a836eed6a42107e7d71a01a52f7ec
+# Source0-md5:	f433a61484da10ed3382c1799169abd6
 URL:		http://pcmanfm.sourceforge.net/
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake
@@ -16,6 +16,7 @@ BuildRequires:	gettext-devel
 BuildRequires:	gtk+2-devel >= 2:2.8
 BuildRequires:	hal-devel >= 0.5.0
 BuildRequires:	intltool
+BuildRequires:	libfm-devel
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
 BuildRequires:	startup-notification-devel
@@ -51,20 +52,15 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-mv $RPM_BUILD_ROOT%{_datadir}/locale/pt{_PT,}
-mv $RPM_BUILD_ROOT%{_datadir}/locale/{no,nb}
-
 %find_lang %{name} --all-name
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %post
-%update_mime_database
 %update_desktop_database
 
 %postun
-%update_mime_database
 %update_desktop_database_postun
 
 %files -f %{name}.lang
@@ -72,9 +68,5 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS TODO
 %attr(755,root,root) %{_bindir}/%{name}
 %dir %{_datadir}/%{name}
-%{_datadir}/%{name}/*.rules
-%{_datadir}/%{name}/icons
 %{_datadir}/%{name}/ui
-%{_datadir}/mime/packages/libmimetype.xml
 %{_desktopdir}/%{name}*.desktop
-%{_pixmapsdir}/%{name}.png
