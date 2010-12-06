@@ -1,12 +1,13 @@
 Summary:	File manager for GTK
 Summary(pl.UTF-8):	Zarządca plików dla GTK
 Name:		pcmanfm
-Version:	0.9.7
+Version:	0.9.8
 Release:	1
-License:	GPL v2
+License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://downloads.sourceforge.net/pcmanfm/%{name}-%{version}.tar.gz
-# Source0-md5:	f433a61484da10ed3382c1799169abd6
+# Source0-md5:	4a7fdc0526ed14e3293d784c0ce27dea
+Patch0:		%{name}-werror.patch
 URL:		http://pcmanfm.sourceforge.net/
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake
@@ -16,8 +17,9 @@ BuildRequires:	gettext-devel
 BuildRequires:	gtk+2-devel >= 2:2.8
 BuildRequires:	hal-devel >= 0.5.0
 BuildRequires:	intltool
-BuildRequires:	libfm-devel
+BuildRequires:	libfm-devel >= 0.1.14
 BuildRequires:	libtool
+BuildRequires:	menu-cache-devel >= 0.3.2
 BuildRequires:	pkgconfig
 BuildRequires:	startup-notification-devel
 Requires(post,postun):	desktop-file-utils
@@ -35,6 +37,7 @@ użytkownika, umożliwiającym przeglądanie katalogów w zakładkach.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 %{__intltoolize}
