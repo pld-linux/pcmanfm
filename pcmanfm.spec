@@ -1,15 +1,15 @@
 # TODO
 # - unpackaged: /etc/xdg/pcmanfm/default/pcmanfm.conf
+%define		libfm	0.1.16
 Summary:	File manager for GTK
 Summary(pl.UTF-8):	Zarządca plików dla GTK
 Name:		pcmanfm
-Version:	0.9.8
-Release:	2.git6240436419
+Version:	0.9.9
+Release:	1
 License:	GPL v2+
 Group:		X11/Applications
-#Source0:	http://downloads.sourceforge.net/pcmanfm/%{name}-%{version}.tar.gz
-Source0:	https://launchpad.net/ubuntu/+archive/primary/+files/%{name}_%{version}+git-6240436419.orig.tar.gz
-# Source0-md5:	d42c6d9ea8828abf52faae5439fd48c3
+Source0:	http://downloads.sourceforge.net/pcmanfm/%{name}-%{version}.tar.gz
+# Source0-md5:	f31ed6defb600f7046a456220d8efa3a
 Patch0:		%{name}-werror.patch
 URL:		http://pcmanfm.sourceforge.net/
 BuildRequires:	autoconf >= 2.53
@@ -20,7 +20,7 @@ BuildRequires:	gettext-devel
 BuildRequires:	gtk+2-devel >= 2:2.8
 BuildRequires:	hal-devel >= 0.5.0
 BuildRequires:	intltool
-BuildRequires:	libfm-devel >= 0.1.15
+BuildRequires:	libfm-devel >= %{libfm}
 BuildRequires:	libtool
 BuildRequires:	menu-cache-devel >= 0.3.2
 BuildRequires:	pkgconfig
@@ -28,6 +28,7 @@ BuildRequires:	startup-notification-devel
 Requires(post,postun):	desktop-file-utils
 Requires(post,postun):	shared-mime-info
 Requires:	gnome-icon-theme
+Requires:	libfm >= %{libfm}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -39,7 +40,7 @@ pcmanfm jest szybkim i lekkim zarządcą plików z przyjaznym interfejsem
 użytkownika, umożliwiającym przeglądanie katalogów w zakładkach.
 
 %prep
-%setup -qn %{name}
+%setup -q
 %patch0 -p1
 
 %build
