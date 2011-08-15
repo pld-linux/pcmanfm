@@ -1,11 +1,9 @@
-# TODO
-# - unpackaged: /etc/xdg/pcmanfm/default/pcmanfm.conf
 %define		libfm	0.1.16
 Summary:	File manager for GTK
 Summary(pl.UTF-8):	Zarządca plików dla GTK
 Name:		pcmanfm
 Version:	0.9.9
-Release:	1
+Release:	2
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://downloads.sourceforge.net/pcmanfm/%{name}-%{version}.tar.gz
@@ -55,9 +53,13 @@ użytkownika, umożliwiającym przeglądanie katalogów w zakładkach.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
+
+# see lxde-common
+install -d $RPM_BUILD_ROOT/etc/xdg/pcmanfm/LXDE
+
+%{__rm} -r $RPM_BUILD_ROOT%{_datadir}/locale/tt_RU
 
 %find_lang %{name} --all-name
 
@@ -73,6 +75,10 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc AUTHORS TODO
+%dir /etc/xdg/pcmanfm
+%dir /etc/xdg/pcmanfm/default
+%dir /etc/xdg/pcmanfm/LXDE
+%config(noreplace) %verify(not md5 mtime size) /etc/xdg/pcmanfm/default/pcmanfm.conf
 %attr(755,root,root) %{_bindir}/%{name}
 %dir %{_datadir}/%{name}
 %{_datadir}/%{name}/ui
