@@ -1,13 +1,13 @@
-%define		libfm	0.1.16
+%define		libfm	0.1.17
 Summary:	File manager for GTK
 Summary(pl.UTF-8):	Zarządca plików dla GTK
 Name:		pcmanfm
-Version:	0.9.9
-Release:	3
+Version:	0.9.10
+Release:	1
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://downloads.sourceforge.net/pcmanfm/%{name}-%{version}.tar.gz
-# Source0-md5:	f31ed6defb600f7046a456220d8efa3a
+# Source0-md5:	d34a3530a6c5dcd674d23021d71c3e95
 Patch0:		%{name}-werror.patch
 URL:		http://pcmanfm.sourceforge.net/
 BuildRequires:	autoconf >= 2.53

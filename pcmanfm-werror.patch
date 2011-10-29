@@ -1,9 +1,9 @@
---- pcmanfm/configure.ac~	2011-02-15 22:43:46.000000000 +0200
-+++ pcmanfm/configure.ac	2011-04-26 23:17:28.718226849 +0300
+--- pcmanfm-0.9.10/configure.ac~	2011-10-24 23:39:34.000000000 +0300
++++ pcmanfm-0.9.10/configure.ac	2011-10-29 18:15:18.044246164 +0300
 @@ -3,7 +3,7 @@
  
  AC_PREREQ([2.63])
- AC_INIT([pcmanfm], [0.9.9], [http://pcmanfm.sf.net/])
+ AC_INIT([pcmanfm], [0.9.10], [http://pcmanfm.sf.net/])
 -AM_INIT_AUTOMAKE([-Wall -Werror foreign])
 +AM_INIT_AUTOMAKE([-Wall foreign])
  
