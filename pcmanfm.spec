@@ -3,7 +3,7 @@ Summary:	File manager for GTK
 Summary(pl.UTF-8):	Zarządca plików dla GTK
 Name:		pcmanfm
 Version:	0.9.10
-Release:	1
+Release:	2
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://downloads.sourceforge.net/pcmanfm/%{name}-%{version}.tar.gz
@@ -16,7 +16,6 @@ BuildRequires:	dbus-glib-devel >= 0.31
 BuildRequires:	fam-devel
 BuildRequires:	gettext-devel
 BuildRequires:	gtk+2-devel >= 2:2.8
-BuildRequires:	hal-devel >= 0.5.0
 BuildRequires:	intltool
 BuildRequires:	libfm-devel >= %{libfm}
 BuildRequires:	libtool
