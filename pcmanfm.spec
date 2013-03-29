@@ -1,26 +1,28 @@
-%define		libfm	0.1.17
+%define		libfm	1.0.1
 Summary:	File manager for GTK
 Summary(pl.UTF-8):	Zarządca plików dla GTK
 Name:		pcmanfm
-Version:	0.9.10
-Release:	2
+Version:	1.1.0
+Release:	1
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://downloads.sourceforge.net/pcmanfm/%{name}-%{version}.tar.gz
-# Source0-md5:	d34a3530a6c5dcd674d23021d71c3e95
-Patch0:		%{name}-werror.patch
+# Source0-md5:	af0cff78690e658f3c06ceabf27bc71a
 URL:		http://pcmanfm.sourceforge.net/
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake
 BuildRequires:	dbus-glib-devel >= 0.31
 BuildRequires:	fam-devel
 BuildRequires:	gettext-devel
+BuildRequires:	glib2-devel
 BuildRequires:	gtk+2-devel >= 2:2.8
 BuildRequires:	intltool
 BuildRequires:	libfm-devel >= %{libfm}
 BuildRequires:	libtool
 BuildRequires:	menu-cache-devel >= 0.3.2
+BuildRequires:	pango-devel >= 1.20.0
 BuildRequires:	pkgconfig
+BuildRequires:	sed >= 4.0
 BuildRequires:	startup-notification-devel
 Requires(post,postun):	desktop-file-utils
 Requires(post,postun):	shared-mime-info
@@ -39,7 +41,10 @@ użytkownika, umożliwiającym przeglądanie katalogów w zakładkach.
 
 %prep
 %setup -q
-%patch0 -p1
+
+%{__sed} -i -e '
+	s/AM_PROG_CC_STDC/AC_PROG_CC/
+' configure.ac
 
 %build
 %{__intltoolize}
@@ -48,7 +53,8 @@ użytkownika, umożliwiającym przeglądanie katalogów w zakładkach.
 %{__autoconf}
 %{__autoheader}
 %{__automake}
-%configure
+%configure \
+	--with-gtk=2
 %{__make}
 
 %install
@@ -59,7 +65,7 @@ rm -rf $RPM_BUILD_ROOT
 # see lxde-common
 install -d $RPM_BUILD_ROOT/etc/xdg/pcmanfm/LXDE
 
-%{__rm} -r $RPM_BUILD_ROOT%{_datadir}/locale/tt_RU
+%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/tt_RU
 
 %find_lang %{name} --all-name
 
@@ -70,7 +76,7 @@ rm -rf $RPM_BUILD_ROOT
 %update_desktop_database
 
 %postun
-%update_desktop_database_postun
+%update_desktop_database
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
@@ -79,7 +85,9 @@ rm -rf $RPM_BUILD_ROOT
 %dir /etc/xdg/pcmanfm/default
 %dir /etc/xdg/pcmanfm/LXDE
 %config(noreplace) %verify(not md5 mtime size) /etc/xdg/pcmanfm/default/pcmanfm.conf
-%attr(755,root,root) %{_bindir}/%{name}
+%attr(755,root,root) %{_bindir}/pcmanfm
+%{_mandir}/man1/pcmanfm.1*
 %dir %{_datadir}/%{name}
 %{_datadir}/%{name}/ui
-%{_desktopdir}/%{name}*.desktop
+%{_desktopdir}/pcmanfm.desktop
+%{_desktopdir}/pcmanfm-desktop-pref.desktop
