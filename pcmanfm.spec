@@ -12,7 +12,6 @@ URL:		http://pcmanfm.sourceforge.net/
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake
 BuildRequires:	dbus-glib-devel >= 0.31
-BuildRequires:	fam-devel
 BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel
 BuildRequires:	gtk+2-devel >= 2:2.8
@@ -23,7 +22,6 @@ BuildRequires:	menu-cache-devel >= 0.3.2
 BuildRequires:	pango-devel >= 1.20.0
 BuildRequires:	pkgconfig
 BuildRequires:	sed >= 4.0
-BuildRequires:	startup-notification-devel
 Requires(post,postun):	desktop-file-utils
 Requires(post,postun):	shared-mime-info
 Requires:	libfm >= %{libfm}
