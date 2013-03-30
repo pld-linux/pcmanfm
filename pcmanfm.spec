@@ -3,11 +3,12 @@ Summary:	File manager for GTK
 Summary(pl.UTF-8):	Zarządca plików dla GTK
 Name:		pcmanfm
 Version:	1.1.0
-Release:	1
+Release:	2
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://downloads.sourceforge.net/pcmanfm/%{name}-%{version}.tar.gz
 # Source0-md5:	af0cff78690e658f3c06ceabf27bc71a
+Patch0:		mate-desktop.patch
 URL:		http://pcmanfm.sourceforge.net/
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake
@@ -39,6 +40,7 @@ użytkownika, umożliwiającym przeglądanie katalogów w zakładkach.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %{__sed} -i -e '
 	s/AM_PROG_CC_STDC/AC_PROG_CC/
