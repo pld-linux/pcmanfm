@@ -13,7 +13,7 @@ URL:		http://pcmanfm.sourceforge.net/
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake
 BuildRequires:	dbus-glib-devel >= 0.31
-BuildRequires:	gettext-devel
+BuildRequires:	gettext-tools
 BuildRequires:	glib2-devel
 BuildRequires:	gtk+2-devel >= 2:2.8
 BuildRequires:	intltool
