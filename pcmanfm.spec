@@ -1,14 +1,13 @@
-%define		libfm	1.0.1
+%define		libfm	1.3.2
 Summary:	File manager for GTK
 Summary(pl.UTF-8):	Zarządca plików dla GTK
 Name:		pcmanfm
-Version:	1.2.1
-Release:	2
+Version:	1.3.2
+Release:	1
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://downloads.sourceforge.net/pcmanfm/%{name}-%{version}.tar.xz
-# Source0-md5:	66e634aff37dbc6d7204570df041152f
-Patch0:		mate-desktop.patch
+# Source0-md5:	ef7c4417d2697ef138d175db7aeae15a
 URL:		http://pcmanfm.sourceforge.net/
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake
@@ -18,6 +17,7 @@ BuildRequires:	glib2-devel
 BuildRequires:	gtk+2-devel >= 2:2.8
 BuildRequires:	intltool
 BuildRequires:	libfm-devel >= %{libfm}
+BuildRequires:	libfm-gtk-devel >= %{libfm}
 BuildRequires:	libtool
 BuildRequires:	menu-cache-devel >= 0.3.2
 BuildRequires:	pango-devel >= 1.20.0
@@ -42,7 +42,6 @@ użytkownika, umożliwiającym przeglądanie katalogów w zakładkach.
 
 %prep
 %setup -q
-%patch0 -p1
 
 %{__sed} -i -e '
 	s/AM_PROG_CC_STDC/AC_PROG_CC/

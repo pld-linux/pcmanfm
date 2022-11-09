@@ -1,8 +1,0 @@
---- pcmanfm-1.1.0/./data/pcmanfm-desktop-pref.desktop~	2012-10-31 21:42:31.000000000 +0200
-+++ pcmanfm-1.1.0/./data/pcmanfm-desktop-pref.desktop	2013-03-30 14:50:35.463135631 +0200
-@@ -96,4 +96,4 @@
- Exec=pcmanfm --desktop-pref
- StartupNotify=true
- Terminal=false
--NotShowIn=GNOME;XFCE;KDE;
-+NotShowIn=GNOME;MATE;XFCE;KDE;
