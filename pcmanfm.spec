@@ -1,33 +1,46 @@
-%define		libfm	1.3.2
+#
+# Conditional build:
+%bcond_with	gtk3	# use GTK+ 3.x instead of GTK+ 2.x
+
+%define		libfm_ver	1.3.2
 Summary:	File manager for GTK
 Summary(pl.UTF-8):	Zarządca plików dla GTK
 Name:		pcmanfm
 Version:	1.3.2
-Release:	1
+Release:	2
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	http://downloads.sourceforge.net/pcmanfm/%{name}-%{version}.tar.xz
+Source0:	https://downloads.sourceforge.net/pcmanfm/%{name}-%{version}.tar.xz
 # Source0-md5:	ef7c4417d2697ef138d175db7aeae15a
 URL:		http://pcmanfm.sourceforge.net/
-BuildRequires:	autoconf >= 2.53
+BuildRequires:	autoconf >= 2.63
 BuildRequires:	automake
 BuildRequires:	dbus-glib-devel >= 0.31
 BuildRequires:	gettext-tools
-BuildRequires:	glib2-devel
-BuildRequires:	gtk+2-devel >= 2:2.8
-BuildRequires:	intltool
-BuildRequires:	libfm-devel >= %{libfm}
-BuildRequires:	libfm-gtk-devel >= %{libfm}
+BuildRequires:	glib2-devel >= 1:2.18.0
+%{!?with_gtk3:BuildRequires:	gtk+2-devel >= 2:2.8}
+%{?with_gtk3:BuildRequires:	gtk+3-devel >= 3.0}
+BuildRequires:	intltool >= 0.40.0
+BuildRequires:	libfm-devel >= %{libfm_ver}
+BuildRequires:	libfm-gtk-devel >= %{libfm_ver}
 BuildRequires:	libtool
 BuildRequires:	menu-cache-devel >= 0.3.2
-BuildRequires:	pango-devel >= 1.20.0
+BuildRequires:	pango-devel >= 1:1.20.0
 BuildRequires:	pkgconfig
+%if %{with gtk3}
+BuildRequires:	pkgconfig(libfm-gtk3) >= %{libfm_ver}
+%else
+BuildRequires:	pkgconfig(libfm-gtk) >= %{libfm_ver}
+%endif
 BuildRequires:	sed >= 4.0
 BuildRequires:	tar >= 1:1.22
+BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xz
 Requires(post,postun):	desktop-file-utils
 Requires(post,postun):	shared-mime-info
-Requires:	libfm >= %{libfm}
+Requires:	glib2 >= 1:2.18.0
+Requires:	libfm >= %{libfm_ver}
+Requires:	pango >= 1:1.20.0
 Suggests:	gnome-icon-theme
 Suggests:	lxde-icon-theme
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -40,12 +53,20 @@ browsing and user-friendly interface.
 pcmanfm jest szybkim i lekkim zarządcą plików z przyjaznym interfejsem
 użytkownika, umożliwiającym przeglądanie katalogów w zakładkach.
 
+%package devel
+Summary:	Header file for pcmanfm modules
+Summary(pl.UTF-8):	Plik nagłówkowy dla modułów pcmanfm
+Group:		Development/Libraries
+Requires:	libfm-devel >= %{libfm_ver}
+
+%description devel
+Header file for pcmanfm modules.
+
+%description devel -l pl.UTF-8
+Plik nagłówkowy dla modułów pcmanfm.
+
 %prep
 %setup -q
-
-%{__sed} -i -e '
-	s/AM_PROG_CC_STDC/AC_PROG_CC/
-' configure.ac
 
 %build
 %{__intltoolize}
@@ -55,18 +76,22 @@ użytkownika, umożliwiającym przeglądanie katalogów w zakładkach.
 %{__autoheader}
 %{__automake}
 %configure \
-	--with-gtk=2
+	%{?with_gtk3:--with-gtk=3}
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
+
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 # see lxde-common
 install -d $RPM_BUILD_ROOT/etc/xdg/pcmanfm/LXDE
+# for modules (PACKAGE_MODULES_DIR)
+install -d $RPM_BUILD_ROOT%{_libdir}/pcmanfm
 
-%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/tt_RU
+%{__mv} $RPM_BUILD_ROOT%{_localedir}/{tt_RU,tt}
+
 
 %find_lang %{name} --all-name
 
@@ -87,8 +112,13 @@ rm -rf $RPM_BUILD_ROOT
 %dir /etc/xdg/pcmanfm/LXDE
 %config(noreplace) %verify(not md5 mtime size) /etc/xdg/pcmanfm/default/pcmanfm.conf
 %attr(755,root,root) %{_bindir}/pcmanfm
+%dir %{_libdir}/pcmanfm
 %{_mandir}/man1/pcmanfm.1*
 %dir %{_datadir}/%{name}
 %{_datadir}/%{name}/ui
 %{_desktopdir}/pcmanfm.desktop
 %{_desktopdir}/pcmanfm-desktop-pref.desktop
+
+%files devel
+%defattr(644,root,root,755)
+%{_includedir}/pcmanfm-modules.h
