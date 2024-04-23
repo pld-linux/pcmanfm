@@ -1,13 +1,13 @@
 #
 # Conditional build:
-%bcond_with	gtk3	# use GTK+ 3.x instead of GTK+ 2.x
+%bcond_without	gtk3	# use GTK+ 3.x instead of GTK+ 2.x
 
 %define		libfm_ver	1.3.2
 Summary:	File manager for GTK
 Summary(pl.UTF-8):	Zarządca plików dla GTK
 Name:		pcmanfm
 Version:	1.3.2
-Release:	3
+Release:	4
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	https://downloads.sourceforge.net/pcmanfm/%{name}-%{version}.tar.xz
